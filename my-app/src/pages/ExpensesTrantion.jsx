@@ -5,7 +5,7 @@ import { getAllExpenses } from '../Actions/action'
 function ExpensesTrantion() {
   const dispatch=useDispatch()
   const expense=useSelector(state=> state.expenses)
-  // console.log(expense)
+  console.log(expense)
 
   useEffect(()=>{
     dispatch(getAllExpenses())

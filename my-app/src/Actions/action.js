@@ -1,7 +1,7 @@
 export const addValue=(value)=>async(dispatch)=>{
   try{
-    dispatch({type:"Loading"})
-    const response= await fetch(`https://assiment-nighteen.rohitmane2.repl.co/${value.category}`,{
+  
+    const response= await fetch(`https://assiment-nighteen.rohitmane2.repl.co/${value.EntryType}`,{
       method:"POST",
       headers:{
         "Content-Type":"application/JSON"
@@ -10,13 +10,13 @@ export const addValue=(value)=>async(dispatch)=>{
     })
 
     const data= await response.json();
-    if(value.category==="income"){
+    if(value.EntryType==="income"){
       dispatch({type:"Income-Added",payload:data})
     }
-    else if(value.category==="expenses"){
+    else if(value.EntryType==="expenses"){
       dispatch({type:"Expenses-Added", payload:data})
     }
-    else if(value.category==="saving"){
+    else if(value.EntryType==="saving"){
       dispatch({type:"Saving-Added", payload:data})
     }
    

@@ -2,7 +2,7 @@ const initialState={
   income:[],
   expenses:[],
   saving:[],
-  loading:false
+  loading:true
 }
 
 const FinancialManagment=(state=initialState,action)=>{
@@ -16,7 +16,7 @@ const FinancialManagment=(state=initialState,action)=>{
     case "Saving-Added":
       return {...state,saving:[action.payload]}  
     case "Fetch-Income":
-      return {...state,income:action.payload}
+      return {...state,income:action.payload,loading:false}
     case "Fetch-Expenses":
       return {...state,expenses:action.payload}  
       case "Fetch-Savings":
