@@ -6,10 +6,11 @@ import { getAllIncome } from '../Actions/action'
 
 function IncomeTrantions() {
   const income= useSelector(state=> state.income)
-  const loading= useSelector(state=> state.loading)
+  
   const [category,setcategory]= useState("")
+  const [SortCategory,setSortCategory]= useState("")
   const dispatch= useDispatch()
-  console.log(income)
+ 
 
   
   useEffect(()=>{
@@ -18,7 +19,9 @@ function IncomeTrantions() {
   },[])
   
   const total= income.reduce((acc,value)=> value.amount+acc,0)
- 
+const SortLow= [...income].sort((a,b)=> a.amount-b.amount)
+const SortHigh= [...income].sort((a,b)=> b.amount-a.amount)
+  
   return (
     <div>
       <select onChange={e=> setcategory(e.target.value)}>
@@ -28,14 +31,30 @@ function IncomeTrantions() {
             <option value="Random">Random</option>
             
           </select>
-      {
-      income.map(get => (
-        <div>
-          <p>description:{get.description}</p>
-          <p>Amount: {get.amount}</p>
-        </div>
-      ))
-}
+          <label>Low</label>
+        <select onClick={e=> setSortCategory(e.target.value)}>
+          <option value="">Please Select</option>
+          <option value="low">Low</option>
+          <option value="high">High</option>
+        </select>
+      {SortCategory=== "low" && (
+        SortLow.map(get=> (
+          <div>
+            <p>Description: {get.description}</p>
+            <p>Category: {get.category}</p>
+            <p>Amount: {get.amount}</p>
+          </div>
+        ))
+      ) }
+      {SortCategory=== "high" && (
+        SortHigh.map(get=> (
+          <div>
+            <p>Description: {get.description}</p>
+            <p>Category: {get.category}</p>
+            <p>Amount: {get.amount}</p>
+          </div>
+        ))
+      ) }
   <h3>Total: {total}</h3>
 
     </div>
