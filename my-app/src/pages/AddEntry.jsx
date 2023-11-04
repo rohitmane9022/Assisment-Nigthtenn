@@ -16,8 +16,8 @@ const FormAddEntry=()=>{
   console.log(category)
   console.log(state)
 
-  const handleAddEntry=()=>{
-    
+  const handleAddEntry=(e)=>{
+    e.preventDefault();
     const AddValueEntry={
       description:description,
       amount:amount,
@@ -64,21 +64,21 @@ const handleCategory=(e)=>{
           <select value={category} disabled={EntryType === ""} onChange={handleCategory}>
         <option value="">Select State</option>
         {EntryType === "income" && (
-          <><option key="salary">Salary</option><option key="business">Business</option><option key="services">Services</option><option key="random">Random</option></>
+          <><option value="salary">Salary</option><option value="business">Business</option><option value="services">Services</option><option value="random">Random</option></>
         )}
         {EntryType === "expenses" && (
-          <><option key="rent">Rent</option><option key="home">Home</option><option key="medical">Medical</option>
-          <option key="regular">Regular</option>
-          <option key="extra">Extra</option></>
+          <><option value="rent">Rent</option><option value="home">Home</option><option value="medical">Medical</option>
+          <option value="regular">Regular</option>
+          <option value="extra">Extra</option></>
         )}
         {EntryType === "saving" && (
-         <><option key="savings">Savings</option><option key="investment">Investment</option><option key="random">Random</option>
+         <><option value="savings">Savings</option><option value="investment">Investment</option><option value="random">Random</option>
          </>
         )}
       </select>
       </div>
 
-        <button onSubmit={handleAddEntry}>Submit</button>
+        <button type="submit">Submit</button>
         </form>
     </div>
   )
