@@ -13,11 +13,9 @@ const FormAddEntry=()=>{
  
   const [EntryType,setEntryType]= useState("")
 
-  console.log(category)
-  console.log(state)
 
   const handleAddEntry=(e)=>{
-    e.preventDefault();
+    
     const AddValueEntry={
       description:description,
       amount:amount,
