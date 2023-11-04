@@ -20,13 +20,10 @@ function IncomeTrantions() {
   const total= income.reduce((acc,value)=> value.amount+acc,0)
   const CategoryNewValue= [...income];
   const Values= CategoryNewValue.filter(get=> get.category.toLowerCase()===category)
-  const ValuesTotal= CategoryNewValue.reduce((acc,total)=> total.amount+acc,0)
-const SortLow= [...Values].sort((a,b)=> a.amount-b.amount)
-const SortHigh= [...Values].sort((a,b)=> b.amount-a.amount)
-  
-  console.log(ValuesTotal)
-  
-  
+
+const SortLow= [...income].sort((a,b)=> a.amount-b.amount)
+const SortHigh= [...income].sort((a,b)=> b.amount-a.amount)
+ 
   return (
     <div>
      {loading===false?(
@@ -46,12 +43,16 @@ const SortHigh= [...Values].sort((a,b)=> b.amount-a.amount)
           <option value="low">Low</option>
           <option value="high">High</option>
         </select>
-        {SortCategory==="" && (
+        
+        {SortCategory=== "" && (
+        income.map(get=> (
           <div>
-            
+            <p>Description: {get.description}</p>
+            <p>Category: {get.category}</p>
+            <p>Amount: {get.amount}</p>
           </div>
-        )
-        }
+        ))
+      ) }
       {SortCategory=== "low" && (
         SortLow.map(get=> (
           <div>
