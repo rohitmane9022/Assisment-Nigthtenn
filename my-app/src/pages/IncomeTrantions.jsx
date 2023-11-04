@@ -6,29 +6,38 @@ import { getAllIncome } from '../Actions/action'
 
 function IncomeTrantions() {
   const income= useSelector(state=> state.income)
+  const loading= useSelector(state=> state.loading)
   
   const [category,setcategory]= useState("")
   const [SortCategory,setSortCategory]= useState("")
   const dispatch= useDispatch()
  
-
-  
   useEffect(()=>{
     dispatch(getAllIncome())
 
   },[])
   
   const total= income.reduce((acc,value)=> value.amount+acc,0)
-const SortLow= [...income].sort((a,b)=> a.amount-b.amount)
-const SortHigh= [...income].sort((a,b)=> b.amount-a.amount)
+  const CategoryNewValue= [...income];
+  const Values= CategoryNewValue.filter(get=> get.category.toLowerCase()===category)
+  const ValuesTotal= CategoryNewValue.reduce((acc,total)=> total.amount+acc,0)
+const SortLow= [...Values].sort((a,b)=> a.amount-b.amount)
+const SortHigh= [...Values].sort((a,b)=> b.amount-a.amount)
+  
+  console.log(ValuesTotal)
+  
   
   return (
     <div>
-      <select onChange={e=> setcategory(e.target.value)}>
+     {loading===false?(
+      <div>
+        <label>Filter by category</label>
+        <select onChange={e=> setcategory(e.target.value)}>
+        <option value="">Please Select</option>
             <option value="salary">Salary</option>
             <option value="business">Business</option>
-            <option value="Services">Services</option>
-            <option value="Random">Random</option>
+            <option value="services">Services</option>
+            <option value="random">Random</option>
             
           </select>
           <label>Low</label>
@@ -37,6 +46,12 @@ const SortHigh= [...income].sort((a,b)=> b.amount-a.amount)
           <option value="low">Low</option>
           <option value="high">High</option>
         </select>
+        {SortCategory==="" && (
+          <div>
+            
+          </div>
+        )
+        }
       {SortCategory=== "low" && (
         SortLow.map(get=> (
           <div>
@@ -57,6 +72,9 @@ const SortHigh= [...income].sort((a,b)=> b.amount-a.amount)
       ) }
   <h3>Total: {total}</h3>
 
+      </div>
+     ):<p>Loading...</p>}
+      
     </div>
   )
 }
