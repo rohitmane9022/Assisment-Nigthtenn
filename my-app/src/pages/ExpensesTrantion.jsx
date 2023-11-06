@@ -32,7 +32,7 @@ const SortHigh= [...expense].sort((a,b)=> b.amount-a.amount)
         <label>Filter by category</label>
         <select onChange={e=> setcategory(e.target.value)}>
         <option value="">Please Select</option>
-        <option value="rent">Rent</option><option value="home">Home</option><option value="medical">Medical</option>
+            <option value="rent">Rent</option><option value="home">Home</option><option value="medical">Medical</option>
           <option value="regular">Regular</option>
           <option value="extra">Extra</option>
             

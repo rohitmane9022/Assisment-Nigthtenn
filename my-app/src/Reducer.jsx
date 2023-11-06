@@ -18,9 +18,9 @@ const FinancialManagment=(state=initialState,action)=>{
     case "Fetch-Income":
       return {...state,income:action.payload,loading:false}
     case "Fetch-Expenses":
-      return {...state,expenses:action.payload}  
+      return {...state,expenses:action.payload,loading:false}  
       case "Fetch-Savings":
-      return {...state,saving:action.payload}  
+      return {...state,saving:action.payload,loading:false}  
       default:
         return state
   }

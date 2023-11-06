@@ -6,24 +6,26 @@ import { getAllIncome } from '../Actions/action'
 
 function IncomeTrantions() {
   const income= useSelector(state=> state.income)
-  const loading= useSelector(state=> state.loading)
+  const loading=useSelector(state=> state.loading)
   
   const [category,setcategory]= useState("")
   const [SortCategory,setSortCategory]= useState("")
   const dispatch= useDispatch()
- 
+  console.log(income)
+
+  
   useEffect(()=>{
     dispatch(getAllIncome())
 
   },[])
   
+  
   const total= income.reduce((acc,value)=> value.amount+acc,0)
   const CategoryNewValue= [...income];
   const Values= CategoryNewValue.filter(get=> get.category.toLowerCase()===category)
 
-const SortLow= [...income].sort((a,b)=> a.amount-b.amount)
+  const SortLow= [...income].sort((a,b)=> a.amount-b.amount)
 const SortHigh= [...income].sort((a,b)=> b.amount-a.amount)
- 
   return (
     <div>
      {loading===false?(
@@ -31,10 +33,9 @@ const SortHigh= [...income].sort((a,b)=> b.amount-a.amount)
         <label>Filter by category</label>
         <select onChange={e=> setcategory(e.target.value)}>
         <option value="">Please Select</option>
-            <option value="salary">Salary</option>
-            <option value="business">Business</option>
-            <option value="services">Services</option>
-            <option value="random">Random</option>
+            <option value="rent">Rent</option><option value="home">Home</option><option value="medical">Medical</option>
+          <option value="regular">Regular</option>
+          <option value="extra">Extra</option>
             
           </select>
           <label>Low</label>
@@ -75,7 +76,6 @@ const SortHigh= [...income].sort((a,b)=> b.amount-a.amount)
 
       </div>
      ):<p>Loading...</p>}
-      
     </div>
   )
 }
