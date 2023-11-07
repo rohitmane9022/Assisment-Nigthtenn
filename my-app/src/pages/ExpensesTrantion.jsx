@@ -20,11 +20,31 @@ function ExpensesTrantion() {
   console.log(Val)
 
   const total= expense.reduce((acc,value)=> value.amount+acc,0)
-  const CategoryNewValue= [...expense];
-  const Values= CategoryNewValue.filter(get=> get.category.toLowerCase()===category)
 
-  const SortLow= [...expense].sort((a,b)=> a.amount-b.amount)
-const SortHigh= [...expense].sort((a,b)=> b.amount-a.amount)
+  
+  const applyFilters = (expense) => {
+    let filteredData = [...expense];
+   
+  
+    const sortMethod = SortCategory;
+    
+  
+    if (category) {
+      filteredData = filteredData.filter(get => get.category.toLowerCase() === category.toLowerCase());
+      console.log(filteredData);
+    }
+  
+    if (sortMethod) {
+      sortMethod === "low"
+        ? filteredData.sort((a, b) => a.amount - b.amount)
+        : filteredData.sort((a, b) => b.amount - a.amount);
+        console.log(sortMethod)
+    }
+  
+    return filteredData;
+  };
+  
+  const filteredProducts = applyFilters(expense);
   return (
     <div>
      {loading===false?(
@@ -43,34 +63,15 @@ const SortHigh= [...expense].sort((a,b)=> b.amount-a.amount)
           <option value="low">Low</option>
           <option value="high">High</option>
         </select>
-        
-        {SortCategory=== "" && (
-        expense.map(get=> (
-          <div>
-            <p>Description: {get.description}</p>
-            <p>Category: {get.category}</p>
-            <p>Amount: {get.amount}</p>
-          </div>
-        ))
-      ) }
-      {SortCategory=== "low" && (
-        SortLow.map(get=> (
-          <div>
-            <p>Description: {get.description}</p>
-            <p>Category: {get.category}</p>
-            <p>Amount: {get.amount}</p>
-          </div>
-        ))
-      ) }
-      {SortCategory=== "high" && (
-        SortHigh.map(get=> (
-          <div>
-            <p>Description: {get.description}</p>
-            <p>Category: {get.category}</p>
-            <p>Amount: {get.amount}</p>
-          </div>
-        ))
-      ) }
+        {
+          filteredProducts.map(get=> (
+            <div>
+              <p>description: {get.description}</p>
+              <p>amount: {get.amount}</p>
+              <p>category: {get.category} </p>
+            </div>
+          ))
+        }
   <h3>Total: {total}</h3>
 
       </div>
