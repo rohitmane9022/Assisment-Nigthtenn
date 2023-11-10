@@ -68,8 +68,10 @@ const filteredProducts = applyFilters(income);
           filteredProducts.map(get=> (
             <div>
               <p>description: {get.description}</p>
-              <p>amount: {get.amount}</p>
+              
               <p>category: {get.category} </p>
+              <p>Date: {new Date(get.createdAt).toLocaleDateString("en-GB")}</p>
+              <p>amount: {get.amount}</p>
             </div>
           ))
         }

@@ -1,10 +1,9 @@
 import { useState } from "react"
 import { addValue } from "../Actions/action"
-import { useDispatch, useSelector } from "react-redux"
-
+import { useDispatch } from "react-redux"
 
 const FormAddEntry=()=>{
-  const state=useSelector(state=> state)
+ 
   const dispatch= useDispatch()
   const [description,setdescription]= useState("")
   const [amount,setamount]=useState(0)

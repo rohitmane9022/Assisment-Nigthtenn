@@ -6,6 +6,7 @@ import FormAddEntry from "./pages/AddEntry";
 import IncomeTrantions from "./pages/IncomeTrantions";
 import ExpensesTrantion from "./pages/ExpensesTrantion";
 import SavingTrantion from "./pages/SavingTrantion";
+import FinancialReports from "./pages/FinancialReports";
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
         <Route path="/income" element={<IncomeTrantions/>}/>
         <Route path="/expense" element={<ExpensesTrantion/>}/>
         <Route path="/saving" element={<SavingTrantion/>}/>
+        <Route path="/report" element={<FinancialReports/>}/>
       </Routes>
     </div>
   );

@@ -22,7 +22,7 @@ function Home() {
     <NavLink to="saving">
       Saving Transactions
     </NavLink>
-    <NavLink to="income">
+    <NavLink to="report">
     Financial Reports
     </NavLink>
       </div>
